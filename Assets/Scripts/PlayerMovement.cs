@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
+    [SerializeField] private LayerMask boxLayerMask;
 
     private void Update()
     {
@@ -15,21 +16,32 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveUp()
     {
-        transform.position += Vector3.forward * distanceToMove;
+        TryMove(Vector3.forward);
     }
 
     public void MoveDown()
     {
-        transform.position += Vector3.back * distanceToMove;
+        TryMove(Vector3.back);
     }
 
     public void MoveLeft()
     {
-        transform.position += Vector3.left * distanceToMove;
+        TryMove(Vector3.left);
     }
 
     public void MoveRight()
     {
-        transform.position += Vector3.right * distanceToMove;
+        TryMove(Vector3.right);
+    }
+
+    private void TryMove(Vector3 direction)
+    {
+        RaycastHit hit;
+        if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
+        {
+            BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
+            if (boxMovement != null) boxMovement.MoveBox(direction);
+        }
+        transform.position += direction * distanceToMove;
     }
 }
