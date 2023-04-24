@@ -40,7 +40,9 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
+            SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
             if (boxMovement != null) boxMovement.MoveBox(direction);
+            else if (slidingBox != null) slidingBox.MoveBox(direction);
         }
         transform.position += direction * distanceToMove;
     }
