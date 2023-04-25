@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class TileManager : MonoBehaviour
 {
+    [SerializeField] private string sceneToLoad;
     private Tile[] tiles;
 
     private void Start()
@@ -17,6 +18,7 @@ public class TileManager : MonoBehaviour
             if (!tile.IsActivated()) return;
         }
         //Win State
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(sceneToLoad);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
