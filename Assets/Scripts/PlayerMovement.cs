@@ -7,10 +7,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)) MoveUp();
-        if (Input.GetKeyDown(KeyCode.S)) MoveDown();
-        if (Input.GetKeyDown(KeyCode.A)) MoveLeft();
-        if (Input.GetKeyDown(KeyCode.D)) MoveRight();
+        if (!PauseMenu.isPaused)
+        {
+            if (Input.GetKeyDown(KeyCode.W)) MoveUp();
+            if (Input.GetKeyDown(KeyCode.S)) MoveDown();
+            if (Input.GetKeyDown(KeyCode.A)) MoveLeft();
+            if (Input.GetKeyDown(KeyCode.D)) MoveRight();
+        }
 
     }
 
