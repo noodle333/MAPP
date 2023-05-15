@@ -5,6 +5,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float distanceToMove = 1f;
     [SerializeField] private LayerMask boxLayerMask;
 
+    [SerializeField] private GameObject playerCamera;
+
+    private void Start()
+    {
+        playerCamera = Camera.main.gameObject;
+    }
+
     private void Update()
     {
         if (!PauseMenu.isPaused)
@@ -46,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
             SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
             if (boxMovement != null) boxMovement.MoveBox(direction);
             else if (slidingBox != null) slidingBox.MoveBox(direction);
+
+            playerCamera.GetComponent<ScreenShake>().Shake(3, 0.2f);
         }
         transform.position += direction * distanceToMove;
     }
