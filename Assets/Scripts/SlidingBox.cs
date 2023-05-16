@@ -5,6 +5,13 @@ public class SlidingBox : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
 
+    private ParticleSystem particles;
+
+    private void Start()
+    {
+        particles = GetComponent<ParticleSystem>();
+    }
+
     public void MoveBox(Vector3 moveDirection)
     {
         StartCoroutine(SlideBox(moveDirection));
@@ -12,6 +19,37 @@ public class SlidingBox : MonoBehaviour
 
     private IEnumerator SlideBox(Vector3 direction)
     {
+        #region particles
+
+        particles.Play();
+        var Shape = particles.shape;
+
+        float angle = 0;
+
+        if(direction == Vector3.forward)
+        {
+            angle = 180;
+        }
+
+        else if (direction == Vector3.right)
+        {
+            angle = 270;
+        }
+
+        else if (direction == Vector3.back)
+        {
+            angle = 0;
+        }
+
+        else if (direction == Vector3.left)
+        {
+            angle = 90;
+        }
+
+        Shape.rotation = new Vector3(0, angle, 0);
+
+        #endregion
+
         transform.position += direction * distanceToMove;
         yield return new WaitForSeconds(0.25f);
         RaycastHit hit;
@@ -19,6 +57,9 @@ public class SlidingBox : MonoBehaviour
         {
             if (hit.transform.CompareTag("Box"))
             {
+                Camera.main.GetComponent<ScreenShake>().StartScreenShake(3, 3, 0.2f);
+                particles.Stop();
+
                 yield break;
             }
         }
