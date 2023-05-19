@@ -40,8 +40,6 @@ public class BoxMovement : MonoBehaviour
         {
             SetActive();
         }
-
-        Debug.Log(isActiveState);
     }
 
     public void SetActive()

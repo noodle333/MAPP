@@ -84,8 +84,6 @@ public class SlidingBox : MonoBehaviour
         {
             SetActive();
         }
-
-        Debug.Log(isActiveState);
     }
 
     public void SetActive()
