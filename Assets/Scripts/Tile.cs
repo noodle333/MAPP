@@ -4,6 +4,13 @@ public class Tile : MonoBehaviour
 {
     private bool isActivated = false;
 
+    private ParticleSystem particles;
+
+    private void Start()
+    {
+        particles = GetComponent<ParticleSystem>();
+    }
+
     public bool IsActivated()
     {
         return isActivated;
@@ -14,6 +21,8 @@ public class Tile : MonoBehaviour
         if (other.tag == "Box")
         {
             isActivated = true;
+
+            particles.Play();
 
             other.SendMessage("UpdateState");
         }
