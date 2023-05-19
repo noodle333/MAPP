@@ -8,6 +8,11 @@ public class BoxMovement : MonoBehaviour
 
     private ParticleSystem particles;
 
+    private bool isActiveState = true;
+
+    [SerializeField] private Material activeStateMaterial;
+    [SerializeField] private Material inactiveStateMaterial;
+
     private void Start()
     {
         particles = GetComponent<ParticleSystem>();
@@ -20,5 +25,32 @@ public class BoxMovement : MonoBehaviour
 
         Camera.main.GetComponent<ScreenShake>().StartScreenShake(3, 3, 0.2f);
         particles.Play();
+    }
+
+    public void UpdateState()
+    {
+        isActiveState = !isActiveState;
+
+        if (isActiveState == false)
+        {
+            SetInactive();
+        }
+
+        else
+        {
+            SetActive();
+        }
+
+        Debug.Log(isActiveState);
+    }
+
+    public void SetActive()
+    {
+        GetComponent<MeshRenderer>().material = activeStateMaterial;
+    }
+
+    public void SetInactive()
+    {
+        GetComponent<MeshRenderer>().material = inactiveStateMaterial;
     }
 }

@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToMove: 1
+  activeStateMaterial: {fileID: 2100000, guid: 29002e37a4ebb7b409119490f969e056, type: 2}
+  inactiveStateMaterial: {fileID: 2100000, guid: a31b592e1a7f9d845b9a7e0aacebb277, type: 2}
 --- !u!54 &6639739469645339956
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,11 +11,21 @@ public class Tile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Box") isActivated = true;
+        if (other.tag == "Box")
+        {
+            isActivated = true;
+
+            other.SendMessage("UpdateState");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Box") isActivated = false;
+        if (other.tag == "Box")
+        {
+            isActivated = false;
+
+            other.SendMessage("UpdateState");
+        }
     }
 }

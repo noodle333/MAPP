@@ -7,6 +7,11 @@ public class SlidingBox : MonoBehaviour
 
     private ParticleSystem particles;
 
+    private bool isActiveState = true;
+
+    [SerializeField] private Material activeStateMaterial;
+    [SerializeField] private Material inactiveStateMaterial;
+
     private void Start()
     {
         particles = GetComponent<ParticleSystem>();
@@ -64,5 +69,32 @@ public class SlidingBox : MonoBehaviour
             }
         }
         StartCoroutine(SlideBox(direction));
+    }
+
+    public void UpdateState()
+    {
+        isActiveState = !isActiveState;
+
+        if (isActiveState == false)
+        {
+            SetInactive();
+        }
+
+        else
+        {
+            SetActive();
+        }
+
+        Debug.Log(isActiveState);
+    }
+
+    public void SetActive()
+    {
+        GetComponent<MeshRenderer>().material = activeStateMaterial;
+    }
+
+    public void SetInactive()
+    {
+        GetComponent<MeshRenderer>().material = inactiveStateMaterial;
     }
 }
