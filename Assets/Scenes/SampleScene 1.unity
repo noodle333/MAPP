@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 226098223}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Box
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,6 +723,11 @@ MonoBehaviour:
   boxLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  swipeStartPos: {x: 0, y: 0}
+  swipeEndPos: {x: 0, y: 0}
+  currentSwipe: {x: 0, y: 0}
+  swipeDirection: 
+  canMove: 1
 --- !u!65 &341323299
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3483,7 +3488,7 @@ MonoBehaviour:
   distanceToMove: 1
   boxLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!65 &1669860195
 BoxCollider:
   m_ObjectHideFlags: 0
