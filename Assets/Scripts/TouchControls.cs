@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class TouchControls : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
     [SerializeField] private LayerMask boxLayerMask;
 
-    [SerializeField] private Vector2 swipeStartPos, swipeEndPos, currentSwipe;
-    [SerializeField] private string swipeDirection;
-    [SerializeField] private bool canMove = true;
+    [SerializeField] private Vector2 swipeStartPos;
+    [SerializeField] private Vector2 swipeEndPos;
+    [SerializeField] private Vector2 currentSwipe;
+
+    private bool canMove = true;
+    private string swipeDirection;
 
     private void Update()
     {
@@ -68,18 +71,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void TryMove(Vector3 direction)
     {
-        canMove = true;
+        print("moved");
+        swipeDirection = "None";
         RaycastHit hit;
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
-            if (hit.transform.tag == "Wall") return;
-            
             BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
             SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
             if (boxMovement != null) boxMovement.MoveBox(direction);
             else if (slidingBox != null) slidingBox.MoveBox(direction);
         }
         transform.position += direction * distanceToMove;
+        canMove = true;
     }
 
     private void DetectSwipeInput()
