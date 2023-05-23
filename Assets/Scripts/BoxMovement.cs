@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoxMovement : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
+    [SerializeField] private LayerMask boxLayerMask;
 
     private ParticleSystem particles;
 
@@ -21,7 +22,11 @@ public class BoxMovement : MonoBehaviour
 
     public void MoveBox(Vector3 moveDirection)
     {
-        transform.position += moveDirection * distanceToMove;
+        RaycastHit hit;
+        if (!Physics.BoxCast(transform.position, Vector3.one * 0.4f, moveDirection, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
+        {
+            transform.position += moveDirection * distanceToMove;
+        }
 
         Camera.main.GetComponent<ScreenShake>().StartScreenShake(3, 3, 0.2f);
         particles.Play();

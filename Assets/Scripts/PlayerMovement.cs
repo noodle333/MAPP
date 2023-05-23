@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
+            if (hit.transform.tag == "Wall") return;
+            
             BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
             SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
             if (boxMovement != null) boxMovement.MoveBox(direction);
