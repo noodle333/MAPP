@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
             else if (slidingBox != null) slidingBox.MoveBox(direction);
         }
         transform.position += direction * distanceToMove;
+        canMove = true;
     }
 
     private void DetectSwipeInput()
