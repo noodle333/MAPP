@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void TryMove(Vector3 direction)
     {
+        canMove = true;
         RaycastHit hit;
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
@@ -79,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
             else if (slidingBox != null) slidingBox.MoveBox(direction);
         }
         transform.position += direction * distanceToMove;
-        canMove = true;
     }
 
     private void DetectSwipeInput()
