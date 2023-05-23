@@ -9,32 +9,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.W)) MoveUp();
-            if (Input.GetKeyDown(KeyCode.S)) MoveDown();
-            if (Input.GetKeyDown(KeyCode.A)) MoveLeft();
-            if (Input.GetKeyDown(KeyCode.D)) MoveRight();
+            if (Input.GetKeyDown(KeyCode.W)) TryMove(Vector3.forward);
+            if (Input.GetKeyDown(KeyCode.S)) TryMove(Vector3.back);
+            if (Input.GetKeyDown(KeyCode.A)) TryMove(Vector3.left);
+            if (Input.GetKeyDown(KeyCode.D)) TryMove(Vector3.right);
         }
 
-    }
-
-    public void MoveUp()
-    {
-        TryMove(Vector3.forward);
-    }
-
-    public void MoveDown()
-    {
-        TryMove(Vector3.back);
-    }
-
-    public void MoveLeft()
-    {
-        TryMove(Vector3.left);
-    }
-
-    public void MoveRight()
-    {
-        TryMove(Vector3.right);
     }
 
     private void TryMove(Vector3 direction)
@@ -43,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             if (hit.transform.tag == "Wall") return;
-            
+
             BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
             SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
             if (boxMovement != null) boxMovement.MoveBox(direction);

@@ -683,6 +683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToMove: 1
+  boxLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &341323297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,6 +1616,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToMove: 1
+  boxLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &755839568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3475,6 +3481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToMove: 1
+  boxLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1669860195
 BoxCollider:
   m_ObjectHideFlags: 0
