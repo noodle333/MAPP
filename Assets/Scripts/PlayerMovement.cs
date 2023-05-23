@@ -28,19 +28,19 @@ public class PlayerMovement : MonoBehaviour
                 canMove = false;
                 if (swipeDirection == "Up")
                 {
-                    MoveUp();
+                    TryMove(Vector3.forward);
                 }
                 else if (swipeDirection == "Down")
                 {
-                    MoveDown();
+                    TryMove(Vector3.back);
                 }
                 else if (swipeDirection == "Left")
                 {
-                    MoveLeft();
+                    TryMove(Vector3.left);
                 }
                 else if (swipeDirection == "Right")
                 {
-                    MoveRight();
+                    TryMove(Vector3.right);
                 }
             }
         }
