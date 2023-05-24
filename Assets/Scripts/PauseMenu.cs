@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
 
+    public AudioSource source;
+
     public static bool isPaused;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
+        source.Play();
         Time.timeScale = 0f;
         isPaused = true;
     }
