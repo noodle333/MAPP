@@ -685,7 +685,7 @@ MonoBehaviour:
   distanceToMove: 1
   boxLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &341323297
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,8 +880,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 7, z: 0}
+  m_Size: {x: 0.5, y: 1.8, z: 0.5}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!23 &440714645
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1623,7 +1623,7 @@ MonoBehaviour:
   distanceToMove: 1
   boxLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!65 &755839568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4116,8 +4116,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 7, z: 0}
+  m_Size: {x: 0.5, y: 1.8, z: 0.5}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!23 &1952710052
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4602,8 +4602,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 7, z: 0}
+  m_Size: {x: 0.5, y: 1.8, z: 0.5}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!23 &2092084775
 MeshRenderer:
   m_ObjectHideFlags: 0
