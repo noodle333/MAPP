@@ -4,7 +4,6 @@ using System.Collections;
 public class SlidingBox : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
-    [SerializeField] private LayerMask boxLayerMask;
 
     private ParticleSystem particles;
 
@@ -20,12 +19,7 @@ public class SlidingBox : MonoBehaviour
 
     public void MoveBox(Vector3 moveDirection)
     {
-        RaycastHit hit;
-        if (!Physics.BoxCast(transform.position, Vector3.one * 0.4f, moveDirection, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
-        {
-            StartCoroutine(SlideBox(moveDirection));
-
-        }
+        StartCoroutine(SlideBox(moveDirection));
     }
 
     private IEnumerator SlideBox(Vector3 direction)
@@ -66,7 +60,7 @@ public class SlidingBox : MonoBehaviour
         RaycastHit hit;
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove))
         {
-            if (hit.transform.tag == "Box" || hit.transform.tag == "Wall")
+            if (hit.transform.CompareTag("Box"))
             {
                 Camera.main.GetComponent<ScreenShake>().StartScreenShake(3, 3, 0.2f);
                 particles.Stop();
