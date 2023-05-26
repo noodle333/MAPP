@@ -13,6 +13,16 @@ public class BoxMovement : MonoBehaviour
         if (!Physics.BoxCast(transform.position, Vector3.one * 0.4f, moveDirection, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             transform.position += moveDirection * distanceToMove;
+
+            if(Camera.main.GetComponent<ScreenShake>() != null)
+            {
+                Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
+            }
+
+            else
+            {
+                Debug.LogError("Missing screenshake script");
+            }
         }
     }
 }
