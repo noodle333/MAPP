@@ -9,6 +9,9 @@ public class Door : MonoBehaviour
 
     private bool opening = false;
     private bool closing = false;
+
+    [SerializeField] private ParticleSystem openingSystem;
+    [SerializeField] private ParticleSystem closingSystem;
    
     private void Start()
     {
@@ -47,11 +50,15 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        opening = true;
+        if (!closing) opening = true;
+
+        openingSystem.Play();
     }
 
     public void Close()
     {
-        closing = true;
+        if (!opening) closing = true;
+
+        closingSystem.Play();
     }
 }

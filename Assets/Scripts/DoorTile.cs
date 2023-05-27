@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class DoorTile : MonoBehaviour
 {
-    private ParticleSystem particles;
+    [SerializeField] private ParticleSystem particles;
 
     private Door door;
 
     private void Start()
     {
-        particles = GetComponent<ParticleSystem>();
         door = GetComponentInChildren<Door>();
     }
 
