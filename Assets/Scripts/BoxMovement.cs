@@ -8,10 +8,12 @@ public class BoxMovement : MonoBehaviour
     [SerializeField] private LayerMask boxLayerMask;
 
     private ParticleSystem particles;
+    private AudioSource boxSlideSound;
 
     private void Start()
     {
         particles = GetComponent<ParticleSystem>();
+        boxSlideSound = GetComponent<AudioSource>();
     }
 
     public void MoveBox(Vector3 moveDirection)
@@ -23,9 +25,17 @@ public class BoxMovement : MonoBehaviour
             particles.Play();
         }
 
+        
+        if (particles != null)
+        {
+                particles.Play();
+        }
+
         if (Camera.main.GetComponent<ScreenShake>() != null)
         {
-            Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
+                Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
         }
+
+        boxSlideSound.Play();
     }
 }

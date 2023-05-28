@@ -7,10 +7,12 @@ public class SlidingBox : MonoBehaviour
     [SerializeField] private LayerMask boxLayerMask;
 
     private ParticleSystem particles;
+    private AudioSource iceBreakSound;
 
     private void Start()
     {
         particles = GetComponent<ParticleSystem>();
+        iceBreakSound = GetComponent<AudioSource>();
     }
 
     public void MoveBox(Vector3 moveDirection)
@@ -27,7 +29,7 @@ public class SlidingBox : MonoBehaviour
 
         else
         {
-            Debug.Log("Missing particles");
+            Debug.LogError("Missing particles");
         }
 
         transform.position += direction * distanceToMove;
@@ -42,6 +44,8 @@ public class SlidingBox : MonoBehaviour
                 {
                     Camera.main.GetComponent<ScreenShake>().Shake(1.5f, 0.5f);
                 }
+
+                iceBreakSound.Play();
 
                 yield break;
             }

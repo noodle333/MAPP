@@ -11,10 +11,14 @@ public class DoorButton : MonoBehaviour
     private bool opening = false;
     private bool closing = false;
 
+    private AudioSource buttonSound;
+
     private void Start()
     {
         startPos = transform.position;
         endPos = startPos + new Vector3(0, -0.1f, 0);
+
+        buttonSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -48,11 +52,20 @@ public class DoorButton : MonoBehaviour
 
     public void Open()
     {
-        if (!closing) opening = true;
+        if (!closing)
+        {
+            opening = true;
+            buttonSound.Play();
+        }
+            
     }
 
     public void Close()
     {
-        if (!opening) closing = true;
+        if (!opening)
+        {
+            closing = true;
+            buttonSound.Play();
+        } 
     }
 }
