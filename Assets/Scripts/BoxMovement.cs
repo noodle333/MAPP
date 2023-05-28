@@ -33,7 +33,7 @@ public class BoxMovement : MonoBehaviour
 
         if (Camera.main.GetComponent<ScreenShake>() != null)
         {
-                Camera.main.GetComponent<ScreenShake>().Shake(2f, 0.15f);
+                Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
         }
 
         boxSlideSound.Play();
