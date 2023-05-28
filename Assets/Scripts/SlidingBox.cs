@@ -17,12 +17,7 @@ public class SlidingBox : MonoBehaviour
 
     public void MoveBox(Vector3 moveDirection)
     {
-        RaycastHit hit;
-        if (!Physics.BoxCast(transform.position, Vector3.one * 0.4f, moveDirection, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
-        {
-            StartCoroutine(SlideBox(moveDirection));
-
-        }
+        StartCoroutine(SlideBox(moveDirection));
     }
 
     private IEnumerator SlideBox(Vector3 direction)
