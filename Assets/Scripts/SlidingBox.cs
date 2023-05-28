@@ -42,7 +42,7 @@ public class SlidingBox : MonoBehaviour
             {
                 if (Camera.main.GetComponent<ScreenShake>() != null)
                 {
-                    Camera.main.GetComponent<ScreenShake>().Shake(3.5f, 0.5f);
+                    Camera.main.GetComponent<ScreenShake>().Shake(1.5f, 0.5f);
                 }
 
                 iceBreakSound.Play();
