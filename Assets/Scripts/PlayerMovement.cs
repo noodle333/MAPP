@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if (!PauseMenu.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.W)) TryMove(Vector3.forward);
@@ -73,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         RaycastHit hit;
-        sound.Play();
+        if (sound != null) sound.Play();
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             if (hit.transform.tag == "Wall") return;

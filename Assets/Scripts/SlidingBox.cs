@@ -48,11 +48,6 @@ public class SlidingBox : MonoBehaviour
                     Camera.main.GetComponent<ScreenShake>().Shake(1.5f, 0.5f);
                 }
 
-                else
-                {
-                    Debug.LogError("Missing screenshake script");
-                }
-
                 yield break;
             }
         }
