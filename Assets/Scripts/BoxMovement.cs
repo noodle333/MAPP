@@ -21,24 +21,14 @@ public class BoxMovement : MonoBehaviour
         {
             transform.position += moveDirection * distanceToMove;
 
-            if(particles != null)
+            if (particles != null)
             {
                 particles.Play();
             }
 
-            else
-            {
-                Debug.Log("Missing particles");
-            }
-
-            if(Camera.main.GetComponent<ScreenShake>() != null)
+            if (Camera.main.GetComponent<ScreenShake>() != null)
             {
                 Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
-            }
-
-            else
-            {
-                Debug.LogError("Missing screenshake script");
             }
         }
     }
