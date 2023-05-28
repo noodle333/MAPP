@@ -32,7 +32,7 @@ public class SlidingBox : MonoBehaviour
 
         else
         {
-            Debug.Log("Missing particles");
+            Debug.LogError("Missing particles");
         }
 
         transform.position += direction * distanceToMove;
