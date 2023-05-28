@@ -12,11 +12,15 @@ public class Door : MonoBehaviour
 
     [SerializeField] private ParticleSystem openingSystem;
     [SerializeField] private ParticleSystem closingSystem;
-   
+
+    private AudioSource doorSound;
+
     private void Start()
     {
         startPos = transform.position;
         endPos = startPos + new Vector3(0, -1, 0);
+
+        doorSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -53,6 +57,7 @@ public class Door : MonoBehaviour
         if (!closing) opening = true;
 
         openingSystem.Play();
+        doorSound.Play();
     }
 
     public void Close()
@@ -60,5 +65,6 @@ public class Door : MonoBehaviour
         if (!opening) closing = true;
 
         closingSystem.Play();
+        doorSound.Play();
     }
 }
