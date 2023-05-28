@@ -25,15 +25,15 @@ public class BoxMovement : MonoBehaviour
             particles.Play();
         }
 
-        
+
         if (particles != null)
         {
-                particles.Play();
+            particles.Play();
         }
 
         if (Camera.main.GetComponent<ScreenShake>() != null)
         {
-                Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
+            Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
         }
 
         boxSlideSound.Play();
