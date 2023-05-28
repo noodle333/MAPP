@@ -1850,7 +1850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6f8d000b3f8e342b784722497f0e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Main Menu
+  sceneToLoad: LevelTwo
   transition: {fileID: 511490874}
 --- !u!4 &892864640
 Transform:

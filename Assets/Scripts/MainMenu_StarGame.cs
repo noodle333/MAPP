@@ -55,6 +55,6 @@ public class MainMenu_StarGame : MonoBehaviour
         shadow.SetActive(false);
         yield return new WaitForSeconds(1f / 6f);
         boxMove.Play();
-        
+
     }
 }
