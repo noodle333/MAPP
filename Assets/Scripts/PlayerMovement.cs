@@ -4,10 +4,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
     [SerializeField] private LayerMask boxLayerMask;
+    private AudioSource sound;
 
     [SerializeField] private Vector2 swipeStartPos, swipeEndPos, currentSwipe;
     [SerializeField] private string swipeDirection;
     [SerializeField] private bool canMove = true;
+
+    private void Start()
+    {
+        sound = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         RaycastHit hit;
+        sound.Play();
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             if (hit.transform.tag == "Wall") return;
