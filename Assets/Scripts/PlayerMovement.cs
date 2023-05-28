@@ -1,22 +1,30 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float distanceToMove = 1f;
     [SerializeField] private LayerMask boxLayerMask;
+    private AudioSource sound;
 
     [SerializeField] private Vector2 swipeStartPos, swipeEndPos, currentSwipe;
     [SerializeField] private string swipeDirection;
     [SerializeField] private bool canMove = true;
 
+    private void Start()
+    {
+        sound = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if (!PauseMenu.isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.W)) MoveUp();
-            if (Input.GetKeyDown(KeyCode.S)) MoveDown();
-            if (Input.GetKeyDown(KeyCode.A)) MoveLeft();
-            if (Input.GetKeyDown(KeyCode.D)) MoveRight();
+            if (Input.GetKeyDown(KeyCode.W)) TryMove(Vector3.forward);
+            if (Input.GetKeyDown(KeyCode.S)) TryMove(Vector3.back);
+            if (Input.GetKeyDown(KeyCode.A)) TryMove(Vector3.left);
+            if (Input.GetKeyDown(KeyCode.D)) TryMove(Vector3.right);
         }
 
         DetectSwipeInput();
@@ -50,17 +58,14 @@ public class PlayerMovement : MonoBehaviour
     {
         TryMove(Vector3.forward);
     }
-
     public void MoveDown()
     {
         TryMove(Vector3.back);
     }
-
     public void MoveLeft()
     {
         TryMove(Vector3.left);
     }
-
     public void MoveRight()
     {
         TryMove(Vector3.right);
@@ -70,14 +75,23 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         RaycastHit hit;
+        if (sound != null) sound.Play();
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             if (hit.transform.tag == "Wall") return;
-            
+
             BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
             SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
-            if (boxMovement != null) boxMovement.MoveBox(direction);
-            else if (slidingBox != null) slidingBox.MoveBox(direction);
+            if (boxMovement != null)
+            {
+                if (Physics.BoxCast(hit.transform.position, Vector3.one * 0.4f, direction, Quaternion.identity, distanceToMove, boxLayerMask)) return;
+                boxMovement.MoveBox(direction);
+            }
+            else if (slidingBox != null)
+            {
+                if (Physics.BoxCast(hit.transform.position, Vector3.one * 0.4f, direction, Quaternion.identity, distanceToMove, boxLayerMask)) return;
+                slidingBox.MoveBox(direction);
+            }
         }
         transform.position += direction * distanceToMove;
     }
