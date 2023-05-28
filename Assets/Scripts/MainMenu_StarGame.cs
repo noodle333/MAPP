@@ -7,6 +7,10 @@ public class MainMenu_StarGame : MonoBehaviour
 {
     public GameObject shadow;
     public Animator transition;
+    public AudioSource boxMove;
+    public AudioSource switchTrigger;
+    public AudioSource buttonClick;
+    public Animator startupAnimation;
 
     public void Awake()
     {
@@ -25,6 +29,7 @@ public class MainMenu_StarGame : MonoBehaviour
 
     public IEnumerator LoadLevel()
     {
+        buttonClick.Play();
         transition.Play("Transition out");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
@@ -32,6 +37,7 @@ public class MainMenu_StarGame : MonoBehaviour
 
     public IEnumerator Quit()
     {
+        buttonClick.Play();
         transition.Play("Transition out");
         yield return new WaitForSeconds(1);
         Application.Quit();
@@ -39,9 +45,16 @@ public class MainMenu_StarGame : MonoBehaviour
 
     public IEnumerator MenuStartup()
     {
-        print("bada bing");
-        yield return new WaitForSeconds(2);
+        startupAnimation.Play("MenuStartup");
+        yield return new WaitForSeconds(1.5f);
+        boxMove.Play();
+        yield return new WaitForSeconds(1f / 3f);
+        boxMove.Play();
+        yield return new WaitForSeconds(1f / 6f);
+        switchTrigger.Play();
         shadow.SetActive(false);
-        print("bada boom");
+        yield return new WaitForSeconds(1f / 6f);
+        boxMove.Play();
+        
     }
 }
