@@ -16,20 +16,16 @@ public class BoxMovement : MonoBehaviour
 
     public void MoveBox(Vector3 moveDirection)
     {
-        RaycastHit hit;
-        if (!Physics.BoxCast(transform.position, Vector3.one * 0.4f, moveDirection, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
+        transform.position += moveDirection * distanceToMove;
+
+        if (particles != null)
         {
-            transform.position += moveDirection * distanceToMove;
+            particles.Play();
+        }
 
-            if (particles != null)
-            {
-                particles.Play();
-            }
-
-            if (Camera.main.GetComponent<ScreenShake>() != null)
-            {
-                Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
-            }
+        if (Camera.main.GetComponent<ScreenShake>() != null)
+        {
+            Camera.main.GetComponent<ScreenShake>().Shake(3f, 0.2f);
         }
     }
 }

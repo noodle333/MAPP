@@ -82,8 +82,16 @@ public class PlayerMovement : MonoBehaviour
 
             BoxMovement boxMovement = hit.transform.GetComponent<BoxMovement>();
             SlidingBox slidingBox = hit.transform.GetComponent<SlidingBox>();
-            if (boxMovement != null) boxMovement.MoveBox(direction);
-            else if (slidingBox != null) slidingBox.MoveBox(direction);
+            if (boxMovement != null)
+            {
+                if (Physics.BoxCast(hit.transform.position, Vector3.one * 0.4f, direction, Quaternion.identity, distanceToMove, boxLayerMask)) return;
+                boxMovement.MoveBox(direction);
+            }
+            else if (slidingBox != null)
+            {
+                if (Physics.BoxCast(hit.transform.position, Vector3.one * 0.4f, direction, Quaternion.identity, distanceToMove, boxLayerMask)) return;
+                slidingBox.MoveBox(direction);
+            }
         }
         transform.position += direction * distanceToMove;
     }
