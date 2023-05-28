@@ -7,10 +7,12 @@ public class DoorTile : MonoBehaviour
     [SerializeField] private ParticleSystem particles;
 
     private Door door;
+    private DoorButton button;
 
     private void Start()
     {
         door = GetComponentInChildren<Door>();
+        button = GetComponentInChildren<DoorButton>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,11 +30,16 @@ public class DoorTile : MonoBehaviour
             }
 
             door.Open();
+            button.Open();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Box" || other.tag == "Player") door.Close();
+        if (other.tag == "Box" || other.tag == "Player")
+        {
+            door.Close();
+            button.Close();
+        }       
     }
 }
