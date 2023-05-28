@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         RaycastHit hit;
-        sound.Play();
+        if (sound != null) sound.Play();
         if (Physics.BoxCast(transform.position, Vector3.one * 0.4f, direction, out hit, Quaternion.identity, distanceToMove, boxLayerMask))
         {
             if (hit.transform.tag == "Wall") return;

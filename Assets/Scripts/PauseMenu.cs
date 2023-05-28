@@ -18,7 +18,14 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         pauseButton.interactable = true;
+    }
 
+    public void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = false;
+        pauseButton.interactable = true;
     }
 
     public void GoToMainMenu()
