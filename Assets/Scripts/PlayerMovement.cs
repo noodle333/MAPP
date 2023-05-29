@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         DetectSwipeInput();
-        if (Input.touches.Length > 0)
+        if (Input.touches.Length > 0 && Time.timeScale == 1)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Ended && canMove)
             {
@@ -98,6 +98,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void DetectSwipeInput()
     {
+        if (Time.timeScale != 1)
+        {
+            return;
+        }
+
         if (Input.touches.Length > 0)
         {
             Touch t = Input.GetTouch(0);
