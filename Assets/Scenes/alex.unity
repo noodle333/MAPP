@@ -4777,6 +4777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed20a7cf5721cac4d9bade2db70b38a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileManager: {fileID: 892864639}
 --- !u!114 &2023676421
 MonoBehaviour:
   m_ObjectHideFlags: 0
