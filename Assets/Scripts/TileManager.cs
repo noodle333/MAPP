@@ -35,6 +35,7 @@ public class TileManager : MonoBehaviour
 
     public IEnumerator RestartGame()
     {
+        Time.timeScale = 1;
         Debug.Log("Hi");
         transition.Play("Transition out");
         yield return new WaitForSeconds(1);
