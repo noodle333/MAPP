@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour
     private Tile[] tiles;
     [SerializeField] private Animator transition;
 
-    private void Start()
+    private void Awake()
     {
         transition = GameObject.Find("Transition").GetComponent<Animator>();
         tiles = FindObjectsOfType<Tile>();

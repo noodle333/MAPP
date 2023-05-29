@@ -105,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
             if (t.phase == TouchPhase.Began)
             {
                 swipeStartPos = new Vector2(t.position.x, t.position.y);
+
+                return;
             }
 
             if (t.phase == TouchPhase.Ended)
