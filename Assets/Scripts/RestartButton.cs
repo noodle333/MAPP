@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class RestartButton : MonoBehaviour
 {
+    [SerializeField] private TileManager tileManager;
     // Start is called before the first frame update
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("Hi");
+        tileManager.StartCoroutine("RestartGame");
     }
 
 }

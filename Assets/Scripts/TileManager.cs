@@ -32,4 +32,12 @@ public class TileManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneToLoad);
     }
+
+    public IEnumerator RestartGame()
+    {
+        Debug.Log("Hi");
+        transition.Play("Transition out");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
