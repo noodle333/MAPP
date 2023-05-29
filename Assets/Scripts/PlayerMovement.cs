@@ -127,6 +127,11 @@ public class PlayerMovement : MonoBehaviour
 
             currentSwipe.Normalize();
 
+            if (Mathf.Abs(currentSwipe.y) == Mathf.Abs(currentSwipe.x))
+            {
+                return;
+            }
+
             if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
             {
                 swipeDirection = "Up";
@@ -142,10 +147,6 @@ public class PlayerMovement : MonoBehaviour
             else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
             {
                 swipeDirection = "Right";
-            }
-            else
-            {
-                swipeDirection = "None";
             }
         }
     }
